@@ -1,4 +1,4 @@
-package com.yudha.mymovie.view
+package com.yudha.mymovie.view.details
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle

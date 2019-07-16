@@ -1,4 +1,4 @@
-package com.yudha.mymovie.view
+package com.yudha.mymovie.view.movie
 
 import android.arch.lifecycle.ViewModel;
 
