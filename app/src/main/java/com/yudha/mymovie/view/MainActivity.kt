@@ -1,36 +1,34 @@
 package com.yudha.mymovie.view
 
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.yudha.mymovie.R
+import com.yudha.mymovie.databinding.ActivityMainBinding
 import com.yudha.mymovie.di.ViewModelFactory
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.LineNumberReader
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-//        setSupportActionBar(toolbar)
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(MainActivityViewModel::class.java)
-//        viewModel.errorMessage.observe(this, Observer {
-//                errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
-//        })
-//        }
+        binding.viewModel = viewModel
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }

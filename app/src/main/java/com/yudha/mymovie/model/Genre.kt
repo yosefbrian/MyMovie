@@ -7,5 +7,5 @@ import com.google.gson.annotations.Expose
  */
 data class Genre (
     @Expose
-    var genres: List<GenreResult>
+    var genres: List<GenreResult> = ArrayList()
 )
