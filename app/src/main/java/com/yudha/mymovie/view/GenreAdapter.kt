@@ -12,30 +12,38 @@ import com.yudha.mymovie.model.GenreResult
 /**
  * Created by yudha on 16,July,2019
  */
-class GenreAdapter: RecyclerView.Adapter<GenreAdapter.viewHolder>() {
+class GenreAdapter: RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
 
     private var response = Genre()
+    private var clickListener: ItemClickListener? = null
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): viewHolder {
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.item_genre, p0, false)
-        return viewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int = response.genres.size
-    override fun onBindViewHolder(p0: viewHolder, p1: Int) {
+    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val genre = response.genres.get(p1)
         p0.updateView(genre)
+        p0.itemView.setOnClickListener {
+            clickListener?.onClick(genre.id)
+        }
     }
 
-    fun updateGenre(genre: Genre){
+    fun updateData(genre: Genre, clickListener: ItemClickListener){
         this.response = genre
-        notifyDataSetChanged()
+        this.clickListener = clickListener
     }
 
-    class viewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var category = itemView.findViewById<TextView>(R.id.category)
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        var category: TextView = itemView.findViewById(R.id.category)
         fun updateView(genre: GenreResult){
             category.text = genre.name
         }
     }
+}
+
+interface ItemClickListener {
+    fun onClick(id: Int)
 }

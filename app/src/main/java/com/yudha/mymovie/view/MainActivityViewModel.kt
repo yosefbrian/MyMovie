@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.BindingAdapter
+import android.databinding.ObservableField
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
@@ -18,10 +19,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
  * Created by yudha on 16,July,2019
  */
 class MainActivityViewModel: BaseViewModel() {
+
     @Inject lateinit var movieDbServices: MovieDbServices
-    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-    val genreAdapter: GenreAdapter = GenreAdapter()
+    val loadingVisibility = MutableLiveData<Int>()
     var data: Genre = Genre()
+    val clickListener = ObservableField<ItemClickListener>()
+    val genreIdLiveData = MutableLiveData<Int>()
 
     init {
         loadPosts()
@@ -34,19 +37,21 @@ class MainActivityViewModel: BaseViewModel() {
             .doOnSubscribe { loadingVisibility.value = View.VISIBLE }
             .doOnTerminate{ loadingVisibility.value = View.GONE }
             .subscribe( { result ->
-                genreAdapter.updateGenre(result)
-                data = result
+                showItem(result)
             },
                 {}
             )
     }
 
-//    companion object {
-//        @JvmStatic
-//        @BindingAdapter("bind:response", "bind:clickListener")
-//        fun bindListAdapter(reyclerView: RecyclerView, response: Genre?) {
-//            if (response != null)
-//                reyclerView.adapter = GenreAdapter(response)
-//        }
-//    }
+    private fun showItem(result: Genre){
+        data = result
+        clickListener.set(object : ItemClickListener {
+            override fun onClick(id: Int) {
+                genreIdLiveData.value = id
+            }
+        })
+
+    }
+
+
 }
