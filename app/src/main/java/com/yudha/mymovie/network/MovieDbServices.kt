@@ -15,7 +15,7 @@ interface MovieDbServices {
     @GET("genre/movie/list$DEFAULT_PARAMS")
     fun getGenres() : Observable<Genre>
 
-    @GET("/discover/movie$DEFAULT_PARAMS")
+    @GET("discover/movie$DEFAULT_PARAMS")
     fun getMovies(@Query("with_genres") genreId: Int) : Observable<Movie>
 
     @GET("/movie/{id}$DEFAULT_PARAMS")

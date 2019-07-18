@@ -14,6 +14,8 @@ import android.widget.Toast
 import com.yudha.mymovie.R
 import com.yudha.mymovie.databinding.ActivityMainBinding
 import com.yudha.mymovie.di.ViewModelFactory
+import com.yudha.mymovie.utils.GENRE_ID
+import com.yudha.mymovie.view.movie.MovieActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.LineNumberReader
@@ -28,18 +30,6 @@ class MainActivity : AppCompatActivity() {
         initDataBinding()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     private fun initDataBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -50,7 +40,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeGenreId(){
         viewModel.genreIdLiveData.observe(this, Observer {
-
+            startActivity(
+                Intent(this@MainActivity, MovieActivity::class.java).apply {
+                putExtra(GENRE_ID, viewModel.genreIdLiveData.value)
+            })
         })
     }
 }

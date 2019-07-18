@@ -1,6 +1,7 @@
 package com.yudha.mymovie.di
 
 import com.yudha.mymovie.view.MainActivityViewModel
+import com.yudha.mymovie.view.movie.MovieActivityViewModel
 import dagger.Component
 
 /**
@@ -9,6 +10,7 @@ import dagger.Component
 @Component(modules = [(NetworkModule::class)])
 interface AppComponent {
     fun inject(mainActivityViewModel: MainActivityViewModel)
+    fun inject(movieActivityViewModel: MovieActivityViewModel)
 
     @Component.Builder
     interface Builder {

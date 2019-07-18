@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.yudha.mymovie.model.Genre
+import com.yudha.mymovie.model.Movie
 import com.yudha.mymovie.view.GenreAdapter
-import com.yudha.mymovie.view.ItemClickListener
+import com.yudha.mymovie.view.movie.MovieAdapter
 
 /**
  * Created by yudha on 17,July,2019
@@ -22,6 +23,15 @@ fun bindListAdapter(reyclerView: RecyclerView, response: Genre?, clickListener: 
     if (response != null && clickListener != null)
         adapter.updateData(response, clickListener)
 }
+
+@BindingAdapter("bind:response1", "bind:clickListener1")
+fun bindMovieAdapter(reyclerView: RecyclerView, response1: Movie?, clickListener1: ItemClickListener?) {
+    val adapter = MovieAdapter()
+    reyclerView.adapter = adapter
+    if (response1 != null && clickListener1 != null)
+        adapter.updateData(response1, clickListener1)
+}
+
 
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
