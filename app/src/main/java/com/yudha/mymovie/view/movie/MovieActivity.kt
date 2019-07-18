@@ -11,6 +11,8 @@ import com.yudha.mymovie.R
 import com.yudha.mymovie.databinding.ActivityMovieBinding
 import com.yudha.mymovie.di.ViewModelFactory
 import com.yudha.mymovie.utils.GENRE_ID
+import com.yudha.mymovie.utils.MOVIE_ID
+import com.yudha.mymovie.view.details.MovieDetailsActivity
 
 class MovieActivity : AppCompatActivity() {
 
@@ -34,8 +36,8 @@ class MovieActivity : AppCompatActivity() {
     private fun observeGenreId(){
         viewModel.movieIdLiveData.observe(this, Observer {
             startActivity(
-                Intent(this, MovieActivity::class.java).apply {
-                    putExtra(GENRE_ID, viewModel.movieIdLiveData.value)
+                Intent(this, MovieDetailsActivity::class.java).apply {
+                    putExtra(MOVIE_ID, viewModel.movieIdLiveData.value)
                 })
         })
     }

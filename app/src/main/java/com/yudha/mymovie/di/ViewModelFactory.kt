@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProvider
 import android.support.v7.app.AppCompatActivity
 import com.yudha.mymovie.view.MainActivity
 import com.yudha.mymovie.view.MainActivityViewModel
+import com.yudha.mymovie.view.details.MovieDetailsActivity
+import com.yudha.mymovie.view.details.MovieDetailsViewModel
 import com.yudha.mymovie.view.movie.MovieActivity
 import com.yudha.mymovie.view.movie.MovieActivityViewModel
 import java.lang.IllegalArgumentException
@@ -18,6 +20,7 @@ class ViewModelFactory(private val activity: AppCompatActivity): ViewModelProvid
         return when(activity){
             is MainActivity -> MainActivityViewModel() as T
             is MovieActivity -> MovieActivityViewModel() as T
+            is MovieDetailsActivity -> MovieDetailsViewModel() as T
             else -> throw IllegalArgumentException("VIEW MODEL NOT FOUND")
         }
     }

@@ -23,9 +23,9 @@ class MainActivityViewModel: BaseViewModel() {
     val clickListener = ObservableField<ItemClickListener>()
     val genreIdLiveData = MutableLiveData<Int>()
 
-    init {
-        loadGenres()
-    }
+
+
+    init { loadGenres() }
 
     @SuppressLint("CheckResult")
     private fun loadGenres(){
