@@ -12,9 +12,9 @@ class VideoResult(
     @Expose
     var author: String,
     @Expose
-    var content: String,
+    var name: String,
     @Expose
     var id: String,
     @Expose
-    var url: String
+    var key: String
 )

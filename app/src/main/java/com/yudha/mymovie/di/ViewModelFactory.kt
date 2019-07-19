@@ -11,6 +11,8 @@ import com.yudha.mymovie.view.movie.MovieActivity
 import com.yudha.mymovie.view.movie.MovieActivityViewModel
 import com.yudha.mymovie.view.review.ReviewActivity
 import com.yudha.mymovie.view.review.ReviewViewModel
+import com.yudha.mymovie.view.video.VideoActivity
+import com.yudha.mymovie.view.video.VideoViewModel
 import java.lang.IllegalArgumentException
 
 /**
@@ -24,6 +26,7 @@ class ViewModelFactory(private val activity: AppCompatActivity): ViewModelProvid
             is MovieActivity -> MovieActivityViewModel() as T
             is MovieDetailsActivity -> MovieDetailsViewModel() as T
             is ReviewActivity -> ReviewViewModel() as T
+            is VideoActivity -> VideoViewModel() as T
             else -> throw IllegalArgumentException("VIEW MODEL NOT FOUND")
         }
     }

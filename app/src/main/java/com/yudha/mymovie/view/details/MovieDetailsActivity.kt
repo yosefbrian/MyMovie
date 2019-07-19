@@ -14,6 +14,7 @@ import com.yudha.mymovie.utils.GENRE_ID
 import com.yudha.mymovie.utils.IMG_URL
 import com.yudha.mymovie.utils.MOVIE_ID
 import com.yudha.mymovie.view.review.ReviewActivity
+import com.yudha.mymovie.view.video.VideoActivity
 import kotlinx.android.synthetic.main.activity_movie_details.*
 
 class MovieDetailsActivity : AppCompatActivity() {
@@ -39,6 +40,14 @@ class MovieDetailsActivity : AppCompatActivity() {
                         putExtra(MOVIE_ID, movieId)
                     })
             }
+            btnVideo.setOnClickListener {
+                startActivity(
+                    Intent(this, VideoActivity::class.java).apply {
+                        putExtra(MOVIE_ID, movieId)
+                    })
+            }
+            progress.visibility = View.GONE
+            relDetail.visibility = View.VISIBLE
         })
 
 

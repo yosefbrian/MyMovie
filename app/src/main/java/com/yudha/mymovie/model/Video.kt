@@ -8,13 +8,13 @@ import com.google.gson.annotations.SerializedName
  */
 data class Video (
     @Expose
-    var id : Int,
+    var id : Int = 0,
     @Expose
-    var result: List<VideoResult>,
+    var results: List<VideoResult> = ArrayList(),
     @SerializedName("total_results")
-    var totalResults: Int,
+    var totalResults: Int = 0,
     @SerializedName("total_pages")
-    var totalPages: Int,
+    var totalPages: Int = 0,
     @Expose
-    var pages: Int
+    var pages: Int=0
 )
