@@ -15,7 +15,7 @@ import android.support.v7.widget.DividerItemDecoration
  * Created by yudha on 17,July,2019
  */
 
-@BindingAdapter("bind:adapter")
+@BindingAdapter("bind:setAdapter")
 fun bindListAdapter(recyclerView: RecyclerView, adapter : RecyclerView.Adapter<*>) {
     val itemDecor = DividerItemDecoration(recyclerView.context, HORIZONTAL)
     recyclerView.addItemDecoration(itemDecor)

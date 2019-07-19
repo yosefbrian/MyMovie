@@ -5,6 +5,7 @@ import com.yudha.mymovie.di.AppComponent
 import com.yudha.mymovie.di.DaggerAppComponent
 import com.yudha.mymovie.di.NetworkModule
 import com.yudha.mymovie.view.MainActivityViewModel
+import com.yudha.mymovie.view.review.ReviewViewModel
 import com.yudha.mymovie.view.details.MovieDetailsViewModel
 import com.yudha.mymovie.view.movie.MovieActivityViewModel
 
@@ -26,6 +27,7 @@ abstract class BaseViewModel: ViewModel() {
             is MainActivityViewModel -> injector.inject(this)
             is MovieActivityViewModel -> injector.inject(this)
             is MovieDetailsViewModel -> injector.inject(this)
+            is ReviewViewModel -> injector.inject(this)
         }
     }
 

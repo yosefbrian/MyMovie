@@ -15,7 +15,6 @@ class MovieDetailsViewModel : BaseViewModel() {
     lateinit var movieDbServices: MovieDbServices
     val loadingVisibility = MutableLiveData<Int>()
     val movieLiveData = MutableLiveData<MovieResult>()
-    val movieIdLiveData = MutableLiveData<Int>()
 
 
     @SuppressLint("CheckResult")
