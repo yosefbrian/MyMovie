@@ -18,16 +18,16 @@ class GenreAdapter: RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
     private var response = Genre()
     private var clickListener: ItemClickListener? = null
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-        val view = LayoutInflater.from(p0.context).inflate(R.layout.item_genre, p0, false)
+    override fun onCreateViewHolder(view: ViewGroup, p1: Int): ViewHolder {
+        val view = LayoutInflater.from(view.context).inflate(R.layout.item_genre, view, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int = response.genres.size
-    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        val genre = response.genres.get(p1)
-        p0.updateView(genre)
-        p0.itemView.setOnClickListener {
+    override fun onBindViewHolder(view: ViewHolder, position: Int) {
+        val genre = response.genres.get(position)
+        view.updateView(genre)
+        view.itemView.setOnClickListener {
             clickListener?.onClick(genre.id)
         }
     }
