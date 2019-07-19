@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
 import android.view.View
+import com.yudha.mymovie.R
 import com.yudha.mymovie.base.BaseViewModel
 import com.yudha.mymovie.model.Genre
 import com.yudha.mymovie.network.MovieDbServices
@@ -20,8 +21,10 @@ class MainActivityViewModel: BaseViewModel() {
     @Inject lateinit var movieDbServices: MovieDbServices
     val loadingVisibility = MutableLiveData<Int>()
     var data: Genre = Genre()
-    val clickListener = ObservableField<ItemClickListener>()
+    private val clickListener = ObservableField<ItemClickListener>()
     val genreIdLiveData = MutableLiveData<Int>()
+    val adapter: GenreAdapter = GenreAdapter()
+    val errorMessage:MutableLiveData<Int> = MutableLiveData()
 
 
 
@@ -36,7 +39,9 @@ class MainActivityViewModel: BaseViewModel() {
             .subscribe( { result ->
                 showItem(result)
             },
-                {}
+                {
+                    errorMessage.value = R.string.error
+                }
             )
     }
 
@@ -47,7 +52,7 @@ class MainActivityViewModel: BaseViewModel() {
                 genreIdLiveData.value = id
             }
         })
-
+        adapter.updateData(data, clickListener.get()!!)
     }
 
 

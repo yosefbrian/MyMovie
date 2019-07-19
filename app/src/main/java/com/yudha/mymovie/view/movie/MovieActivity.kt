@@ -22,18 +22,20 @@ class MovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDataBinding()
+
     }
 
     private fun initDataBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie)
+        binding.lifecycleOwner = this
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         viewModel = ViewModelProviders.of(this@MovieActivity, ViewModelFactory(this@MovieActivity)).get(MovieActivityViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.loadMovies(intent.getIntExtra(GENRE_ID,0))
-        observeGenreId()
+        observeMovieId()
     }
 
-    private fun observeGenreId(){
+    private fun observeMovieId(){
         viewModel.movieIdLiveData.observe(this, Observer {
             startActivity(
                 Intent(this, MovieDetailsActivity::class.java).apply {

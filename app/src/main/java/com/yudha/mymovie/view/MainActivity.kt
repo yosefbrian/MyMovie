@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
+    private var errorSnackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +34,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun initDataBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(MainActivityViewModel::class.java)
         binding.viewModel = viewModel
+        viewModel.errorMessage.observe(this, Observer {
+                errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
+        })
         observeGenreId()
     }
 
@@ -45,5 +51,13 @@ class MainActivity : AppCompatActivity() {
                 putExtra(GENRE_ID, viewModel.genreIdLiveData.value)
             })
         })
+    }
+
+    private fun showError(@StringRes errorMessage:Int){
+        errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
+        errorSnackbar?.show()
+    }
+    private fun hideError(){
+        errorSnackbar?.dismiss()
     }
 }

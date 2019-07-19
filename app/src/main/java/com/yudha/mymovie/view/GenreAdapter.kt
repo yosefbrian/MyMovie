@@ -35,6 +35,7 @@ class GenreAdapter: RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
     fun updateData(genre: Genre, clickListener: ItemClickListener){
         this.response = genre
         this.clickListener = clickListener
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
