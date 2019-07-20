@@ -42,16 +42,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.errorMessage.observe(this, Observer {
                 errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
         })
-        observeGenreId()
-    }
-
-    private fun observeGenreId(){
-        viewModel.genreIdLiveData.observe(this, Observer {
-            startActivity(
-                Intent(this@MainActivity, MovieActivity::class.java).apply {
-                putExtra(GENRE_ID, viewModel.genreIdLiveData.value)
-            })
-        })
     }
 
     private fun showError(@StringRes errorMessage:Int){

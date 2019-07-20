@@ -31,15 +31,5 @@ class VideoActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this@VideoActivity, ViewModelFactory(this@VideoActivity)).get(VideoViewModel::class.java)
         binding.viewModel = viewModel
         viewModel.loadVideos(intent.getIntExtra(MOVIE_ID,0))
-        observeMovieId()
     }
-
-    private fun observeMovieId(){
-        viewModel.videoKeyLiveData.observe(this, Observer {
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(VID_URL+viewModel.videoKeyLiveData.value)
-            startActivity(i)
-        })
-    }
-
 }

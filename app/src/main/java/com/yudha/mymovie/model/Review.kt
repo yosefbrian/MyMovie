@@ -10,7 +10,7 @@ data class Review (
     @Expose
     var id : Int = 0,
     @Expose
-    var results: List<ReviewResult> = ArrayList(),
+    var results: List<ReviewResult> = mutableListOf(),
     @SerializedName("total_results")
     var totalResults: Int = 0,
     @SerializedName("total_pages")

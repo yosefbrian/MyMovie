@@ -20,9 +20,6 @@ class VideoViewModel: BaseViewModel() {
     @Inject
     lateinit var movieDbServices: MovieDbServices
     val loadingVisibility = MutableLiveData<Int>()
-    var data: Video = Video()
-    private val clickListener = ObservableField<VideoClickListener>()
-    val videoKeyLiveData = MutableLiveData<String>()
     val adapter: VideoAdapter = VideoAdapter()
 
     @SuppressLint("CheckResult")
@@ -32,22 +29,12 @@ class VideoViewModel: BaseViewModel() {
             .doOnSubscribe { loadingVisibility.value = View.VISIBLE }
             .doOnTerminate{ loadingVisibility.value = View.GONE }
             .subscribe( { result ->
-                showItem(result)
+                adapter.updateData(result)
             },
                 {
                     it.printStackTrace()
                 }
             )
-    }
-
-    private fun showItem(result: Video){
-        data = result
-        clickListener.set(object : VideoClickListener {
-            override fun onClick(id: String) {
-                videoKeyLiveData.value = id
-            }
-        })
-        adapter.updateData(data, clickListener.get()!!)
     }
 
 }

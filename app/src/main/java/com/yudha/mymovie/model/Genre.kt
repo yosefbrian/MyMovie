@@ -7,5 +7,4 @@ import com.google.gson.annotations.Expose
  */
 data class Genre (
     @Expose
-    var genres: List<GenreResult> = ArrayList()
-)
+    var genres: List<GenreResult> = mutableListOf())

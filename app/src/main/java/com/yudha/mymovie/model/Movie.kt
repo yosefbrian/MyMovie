@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class Movie(
     @Expose
-    var results: List<MovieResult> = ArrayList(),
+    var results: List<MovieResult> = mutableListOf(),
     @SerializedName("total_results")
     var totalResults: Int = 0,
     @SerializedName("total_pages")

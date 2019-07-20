@@ -10,7 +10,7 @@ data class Video (
     @Expose
     var id : Int = 0,
     @Expose
-    var results: List<VideoResult> = ArrayList(),
+    var results: List<VideoResult> = mutableListOf(),
     @SerializedName("total_results")
     var totalResults: Int = 0,
     @SerializedName("total_pages")
