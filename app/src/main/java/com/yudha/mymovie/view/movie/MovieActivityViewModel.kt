@@ -21,8 +21,8 @@ class MovieActivityViewModel : BaseViewModel() {
     }
 
     @SuppressLint("CheckResult")
-    fun loadMovies(genreId: Int){
-        movieDbServices.getMovies(genreId).subscribeOn(Schedulers.io())
+    fun loadMovies(genreId: Int, page: Int){
+        movieDbServices.getMovies(genreId, page).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnTerminate{ loadingVisibility.value = View.GONE }
             .subscribe( { result ->

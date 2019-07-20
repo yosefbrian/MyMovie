@@ -21,22 +21,22 @@ import com.yudha.mymovie.view.details.MovieDetailsActivity
  */
 class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-    private var response = Movie()
+    private val movieList = mutableListOf<MovieResult>()
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.item_movie, p0, false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = response.results.size
+    override fun getItemCount(): Int = movieList.size
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        val movie = response.results.get(p1)
+        val movie = movieList.get(p1)
         p0.updateView(movie)
     }
 
     fun updateData(movie: Movie){
-        this.response = movie
+        this.movieList.addAll(movie.results)
         notifyDataSetChanged()
     }
 

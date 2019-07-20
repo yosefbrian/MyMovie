@@ -14,5 +14,5 @@ data class Movie(
     @SerializedName("total_pages")
     var totalPages: Int = 0,
     @Expose
-    var pages: Int = 0
+    var page: Int = 0
 )

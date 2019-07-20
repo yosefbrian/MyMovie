@@ -18,6 +18,8 @@ class MovieActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieBinding
     private lateinit var viewModel: MovieActivityViewModel
+    var genreId = 0
+    var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,8 @@ class MovieActivity : AppCompatActivity() {
         binding.movieList.layoutManager = GridLayoutManager(this, 2)
         viewModel = ViewModelProviders.of(this@MovieActivity, ViewModelFactory(this@MovieActivity)).get(MovieActivityViewModel::class.java)
         binding.viewModel = viewModel
-        viewModel.loadMovies(intent.getIntExtra(GENRE_ID,0))
+        genreId = intent.getIntExtra(GENRE_ID,0)
+        viewModel.loadMovies(genreId, page)
 
         binding.movieList.addOnScrollListener( object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -42,9 +45,10 @@ class MovieActivity : AppCompatActivity() {
                     val layoutManager: GridLayoutManager = binding.movieList.layoutManager as GridLayoutManager
                     val lastItem = layoutManager.findLastCompletelyVisibleItemPosition()
                     val currentTotalCount = layoutManager.itemCount
-
                     if (currentTotalCount <= lastItem + visibleThreshold) {
-                        Toast.makeText(this@MovieActivity, "page2", Toast.LENGTH_LONG).show()
+                        page += 1
+                        Toast.makeText(this@MovieActivity, page.toString(), Toast.LENGTH_LONG).show()
+                        viewModel.loadMovies(genreId, page)
                     }
                 }
             }
