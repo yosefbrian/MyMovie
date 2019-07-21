@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.yudha.mymovie.R
-import com.yudha.mymovie.model.Video
-import com.yudha.mymovie.model.VideoResult
+import com.yudha.mymovie.data.model.Video
+import com.yudha.mymovie.data.model.VideoResult
 import com.yudha.mymovie.utils.VID_URL
 
 /**

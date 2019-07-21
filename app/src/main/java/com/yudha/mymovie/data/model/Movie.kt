@@ -1,4 +1,4 @@
-package com.yudha.mymovie.model
+package com.yudha.mymovie.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -6,15 +6,13 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by yudha on 15,July,2019
  */
-data class Video (
+data class Movie(
     @Expose
-    var id : Int = 0,
-    @Expose
-    var results: List<VideoResult> = mutableListOf(),
+    var results: List<MovieResult> = mutableListOf(),
     @SerializedName("total_results")
     var totalResults: Int = 0,
     @SerializedName("total_pages")
     var totalPages: Int = 0,
     @Expose
-    var pages: Int=0
+    var page: Int = 0
 )

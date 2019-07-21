@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.github.florent37.glidepalette.BitmapPalette
+import com.github.florent37.glidepalette.GlidePalette
 import com.yudha.mymovie.R
-import com.yudha.mymovie.model.Movie
-import com.yudha.mymovie.model.MovieResult
+import com.yudha.mymovie.data.model.Movie
+import com.yudha.mymovie.data.model.MovieResult
 import com.yudha.mymovie.utils.IMG_URL
 import com.yudha.mymovie.utils.MOVIE_ID
 import com.yudha.mymovie.view.details.MovieDetailsActivity
@@ -41,12 +44,21 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        private val category: TextView = itemView.findViewById(R.id.category)
-        private val linItem: LinearLayout = itemView.findViewById(R.id.linItem)
+        private val category: TextView = itemView.findViewById(R.id.title)
+        private val linItem: RelativeLayout = itemView.findViewById(R.id.linItem)
         private val image: ImageView = itemView.findViewById(R.id.poster)
+        private val itemPosterPalette: LinearLayout = itemView.findViewById(R.id.item_poster_palette)
         fun updateView(movie: MovieResult){
             category.text = movie.title
-            Glide.with(itemView.context).load(IMG_URL+movie.posterPath).into(image)
+            Glide.with(itemView.context)
+                .load(IMG_URL+movie.posterPath)
+                .listener(
+                    GlidePalette.with(IMG_URL+movie.posterPath)
+                    .use(BitmapPalette.Profile.VIBRANT_DARK)
+                    .intoBackground(itemPosterPalette)
+                    .crossfade(true))
+                .into(image)
+
             linItem.setOnClickListener {
                 itemView.context.startActivity(Intent(itemView.context, MovieDetailsActivity::class.java).apply {
                     putExtra(MOVIE_ID, movie.id)})

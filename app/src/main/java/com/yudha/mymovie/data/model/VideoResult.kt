@@ -1,4 +1,4 @@
-package com.yudha.mymovie.model
+package com.yudha.mymovie.data.model
 
 import com.google.gson.annotations.Expose
 
@@ -6,13 +6,13 @@ import com.google.gson.annotations.Expose
 /**
  * Created by yudha on 15,July,2019
  */
-data class ReviewResult (
+class VideoResult(
     @Expose
     var author: String,
     @Expose
-    var content: String,
+    var name: String,
     @Expose
     var id: String,
     @Expose
-    var url: String
+    var key: String
 )

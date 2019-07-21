@@ -1,20 +1,18 @@
-package com.yudha.mymovie.model
+package com.yudha.mymovie.data.model
 
 import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
 
 
 /**
  * Created by yudha on 15,July,2019
  */
-class VideoResult(
+data class ReviewResult (
     @Expose
     var author: String,
     @Expose
-    var name: String,
+    var content: String,
     @Expose
     var id: String,
     @Expose
-    var key: String
+    var url: String
 )

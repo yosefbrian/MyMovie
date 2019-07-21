@@ -7,7 +7,7 @@
     <data tools:ignore="MissingConstraints">
         <variable
                 name="viewModel"
-                type="com.yudha.mymovie.view.movie.MovieActivityViewModel" />
+                type="com.yudha.mymovie.view.movie.MovieViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

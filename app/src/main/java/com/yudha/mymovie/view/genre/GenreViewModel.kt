@@ -1,35 +1,47 @@
-package com.yudha.mymovie.view.movie
+package com.yudha.mymovie.view.genre
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
+import com.yudha.mymovie.R
 import com.yudha.mymovie.base.BaseViewModel
 import com.yudha.mymovie.network.MovieDbServices
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MovieActivityViewModel : BaseViewModel() {
+/**
+ * Created by yudha on 16,July,2019
+ */
+class GenreViewModel: BaseViewModel() {
 
     @Inject
     lateinit var movieDbServices: MovieDbServices
-    val loadingVisibility = MutableLiveData<Int>()
-    val adapter: MovieAdapter = MovieAdapter()
 
-    init {
-        loadingVisibility.value = View.VISIBLE
-    }
+    val adapter: GenreAdapter = GenreAdapter()
+    val loadingVisibility = MutableLiveData<Int>()
+    val errorMessage:MutableLiveData<Int> = MutableLiveData()
+
+    init { loadGenres() }
 
     @SuppressLint("CheckResult")
-    fun loadMovies(genreId: Int, page: Int){
-        movieDbServices.getMovies(genreId, page).subscribeOn(Schedulers.io())
+    private fun loadGenres(){
+        val compositeDisposable = CompositeDisposable()
+        compositeDisposable.add(movieDbServices.getGenres().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { loadingVisibility.value = View.VISIBLE }
             .doOnTerminate{ loadingVisibility.value = View.GONE }
             .subscribe( { result ->
                 adapter.updateData(result)
             },
                 {
+                    errorMessage.value = R.string.error
                 }
             )
+        )
     }
+
+
+
 }

@@ -4,12 +4,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".view.MainActivity">
+        tools:context=".view.genre.GenreActivity">
 
     <data tools:ignore="MissingConstraints">
         <variable
                 name="viewModel"
-                type="com.yudha.mymovie.view.MainActivityViewModel" />
+                type="com.yudha.mymovie.view.genre.GenreViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

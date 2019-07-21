@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yudha.mymovie.R
-import com.yudha.mymovie.model.Review
-import com.yudha.mymovie.model.ReviewResult
+import com.yudha.mymovie.data.model.Review
+import com.yudha.mymovie.data.model.ReviewResult
 
 /**
  * Created by yudha on 19,July,2019

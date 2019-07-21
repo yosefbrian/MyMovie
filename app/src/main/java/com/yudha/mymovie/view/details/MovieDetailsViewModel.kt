@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
 import com.yudha.mymovie.base.BaseViewModel
-import com.yudha.mymovie.model.MovieResult
+import com.yudha.mymovie.data.model.MovieResult
 import com.yudha.mymovie.network.MovieDbServices
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

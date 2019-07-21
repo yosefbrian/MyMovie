@@ -1,9 +1,9 @@
 package com.yudha.mymovie.di
 
-import com.yudha.mymovie.view.MainActivityViewModel
-import com.yudha.mymovie.view.review.ReviewViewModel
 import com.yudha.mymovie.view.details.MovieDetailsViewModel
-import com.yudha.mymovie.view.movie.MovieActivityViewModel
+import com.yudha.mymovie.view.genre.GenreViewModel
+import com.yudha.mymovie.view.movie.MovieViewModel
+import com.yudha.mymovie.view.review.ReviewViewModel
 import com.yudha.mymovie.view.video.VideoViewModel
 import dagger.Component
 
@@ -12,8 +12,8 @@ import dagger.Component
  */
 @Component(modules = [(NetworkModule::class)])
 interface AppComponent {
-    fun inject(mainActivityViewModel: MainActivityViewModel)
-    fun inject(movieActivityViewModel: MovieActivityViewModel)
+    fun inject(GenreViewModel: GenreViewModel)
+    fun inject(movieViewModel: MovieViewModel)
     fun inject(movieDetailsViewModel: MovieDetailsViewModel)
     fun inject(reviewViewModel: ReviewViewModel)
     fun inject(videoViewModel: VideoViewModel)

@@ -1,4 +1,4 @@
-package com.yudha.mymovie.model
+package com.yudha.mymovie.data.model
 
 import com.google.gson.annotations.Expose
 

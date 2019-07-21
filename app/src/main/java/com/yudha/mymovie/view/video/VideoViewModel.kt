@@ -2,12 +2,9 @@ package com.yudha.mymovie.view.video
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
-import android.databinding.ObservableField
 import android.view.View
 import com.yudha.mymovie.base.BaseViewModel
-import com.yudha.mymovie.model.Video
 import com.yudha.mymovie.network.MovieDbServices
-import com.yudha.mymovie.utils.VideoClickListener
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

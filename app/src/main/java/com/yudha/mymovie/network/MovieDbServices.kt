@@ -1,6 +1,6 @@
 package com.yudha.mymovie.network
 
-import com.yudha.mymovie.model.*
+import com.yudha.mymovie.data.model.*
 import com.yudha.mymovie.utils.DEFAULT_PARAMS
 import io.reactivex.Observable
 import retrofit2.http.GET
